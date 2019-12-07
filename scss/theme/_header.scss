@@ -1,177 +1,283 @@
 /* =================================== */
-/*  Start Header Area CSS
+/*  Menu Styles
 /* =================================== */
 
-.canvus_menu {
-	overflow: hidden;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	z-index: 10;
-	min-height: 80px;
-	width: 100%;
-	.toggle_icon {
-		cursor: pointer;
-		position: relative;
-		height: 20px;
-		width: 30px;
-		top: 30px;
-		left: 0;
-		z-index: 99;
-		display: inline-block;
-		background: #ffffff;
-		@include transition();
-		span {
-			height: 2px;
-			width: 30px;
-			display: block;
-			background: $title-color;
-			cursor: pointer;
-			@include transition(all 0.5s ease-in-out);
-			&:before {
-				content: "";
-				height: 2px;
-				width: 25px;
-				display: block;
-				background: $title-color;
-				left: 0px;
-				top: 20px;
-				position: absolute;
-				@include transition(all 0.5s ease-in-out);
-			}
-			&:after {
-				content: "";
-				height: 2px;
-				width: 20px;
-				display: block;
-				background: $title-color;
-				left: 0px;
-				bottom: 8px;
-				position: absolute;
-				@include transition(all 0.5s ease-in-out);
-			}
-		}
-	}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+
+.main-menu{
+  padding-bottom:20px ;
+  padding-top:20px ;
 }
 
-.side_menu {
-	position: fixed;
-	left: -500px;
-	top: 0px;
-	width: 100%;
-	background: $white;
-	max-width: 500px;
-	padding: 130px 115px;
-	@media (max-width: 575px) {
-		max-width: 300px;
-		padding: 20px 15px;
-	}
-	z-index: 9;
-	box-shadow: 0px 20px 50px rgba(70, 129, 255, 0.1);
-	@include transition();
-	.logo {
-		margin-bottom: 100px;
-		@media (max-width: 991px) {
-			margin-bottom: 30px;
-		}
-	}
-	.menu-left {
-		max-height: 420px;
-		@media (max-width: 1440px) {
-			margin-top: 20px;
-		}
-		li {
-			margin-bottom: 25px;
-			@media (max-width: 1440px) {
-				margin-bottom: 15px;
-			}
-			&:last-child {
-				margin-bottom: 0px;
-			}
-			a,
-			.dropdown-toggle {
-				cursor: pointer;
-				font-size: 18px;
-				font-weight: 500;
-				color: $title-color;
-			}
-			.dropdown-toggle {
-				background: transparent;
-				border: 0;
-				padding: 0;
-				&:focus {
-					outline: none;
-				}
-				&:after {
-					content: none;
-				}
-			}
-			.dropdown-menu {
-				top: -36px !important;
-				left: 110px !important;
-				border: 0;
-				background: $primary-color;
-				border-radius: 0px;
-				a {
-					color: $white;
-					font-size: 14px;
-				}
-				&.show {
-					&:after {
-						content: "\f178";
-						font: normal normal normal 14px/1 FontAwesome;
-						position: absolute;
-						top: 18px;
-						left: -22%;
-						color: $black;
-						@include transform(scaleX(3));
-					}
-				}
-				.dropdown-item {
-					background: transparent;
-					&:hover {
-						opacity: 0.7;
-					}
-				}
-			}
-		}
-	}
-}
-.open {
-	.side_menu {
-		left: 0px;
-	}
-	.canvus_menu {
-		position: fixed;
-		.toggle_icon {
-			left: 50px;
-			@media (max-width: 1440px) {
-				left: 240px;
-			}
-			@media (max-width: 575px) {
-				left: 240px;
-			}
-			span {
-				background: transparent !important;
-				&:before {
-					width: 25px;
-					@include transform(rotate(45deg));
-					top: 9px;
-					left: 3px;
-					@include transition(all 0.5s ease-in-out);
-				}
-				&:after {
-					width: 25px;
-					@include transform(rotate(-45deg));
-					left: 3px;
-					top: 9px;
-					@include transition(all 0.5s ease-in-out);
-				}
-			}
-		}
-	}
+#header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 997;
+  background:$white;
 }
 
-/* =================================== */
-/*   End Header Area CSS
-/* =================================== */
+#header.header-scrolled {
+  transition: all 0.5s;
+  box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
+  .main-menu{
+    border-color:transparent;
+  }
+}
+
+@media(max-width:673px){
+  #logo{
+      margin-left:20px;
+  }
+}
+
+.nav-menu li:hover > a, .menu-active,  .parent-active > .sf-with-ul{
+  color: $primary-color!important;
+}
+
+
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Nav Menu Essentials */
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  right: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu > li {
+  float: left;
+}
+
+.nav-menu li:hover > ul,
+.nav-menu li.sfHover > ul {
+  display: block;
+}
+
+.nav-menu ul ul {
+  top: 0;
+  right: 100%;
+}
+
+.nav-menu ul li {
+  min-width: 180px;
+}
+
+/* Nav Menu Arrows */
+.sf-arrows .sf-with-ul {
+  padding-right: 30px;
+}
+
+.sf-arrows .sf-with-ul:after {
+  content: "\f107";
+  position: absolute;
+  right: 15px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.sf-arrows ul .sf-with-ul:after {
+  content: "\f105";
+}
+
+/* Nav Meu Container */
+
+@media (max-width: 768px) {
+  #nav-menu-container {
+    display: none;
+  }
+}
+
+/* Nav Meu Styling */
+.nav-menu a {
+  padding: 0 8px 0px 8px;
+  text-decoration: none;
+  display: inline-block;
+  color: $black;
+  font-weight:500;  
+  font-size: 12px;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.nav-menu li:hover > a{
+  color: $primary-color;
+}
+
+.nav-menu > li {
+  margin-left: 10px;
+}
+
+.nav-menu ul {
+  margin: 22px 0 0 0;
+  padding: 10px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  background: #fff;
+}
+
+
+
+.nav-menu ul li {
+  transition: 0.3s;
+}
+
+.nav-menu ul li a {
+  padding: 5px 10px;
+  color: #333;
+  transition: 0.3s;
+  display: block;
+  font-size: 12px;
+  text-transform: none;
+}
+
+.nav-menu ul li:hover > a {
+  color: $primary-color;
+}
+
+.nav-menu ul ul {
+  margin-right: 10px;
+  margin-top:0;
+}
+
+/* Mobile Nav Toggle */
+#mobile-nav-toggle {
+  position: fixed;
+  right: 15px;
+  z-index: 999;
+  top: 22px;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  display: none;
+  transition: all 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+#mobile-nav-toggle i {
+  color: $black;
+  font-weight: 900;  
+}
+
+@media (max-width: 991px) {
+  #mobile-nav-toggle {
+    display: inline;
+  }
+  #nav-menu-container{
+    display:none;
+  }
+}
+
+/* Mobile Nav Styling */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  padding-top: 18px;
+  bottom: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.8);
+  left: -260px;
+  width: 260px;
+  overflow-y: auto;
+  transition: 0.4s;
+}
+
+#mobile-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#mobile-nav ul li {
+  position: relative;
+}
+
+#mobile-nav ul li a {
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  overflow: hidden;
+  padding: 10px 22px 10px 15px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  outline: none;
+  font-weight: 400;
+}
+
+#mobile-nav ul li a:hover {
+  color: #fff;
+}
+
+#mobile-nav ul li li {
+  padding-left: 30px;
+}
+
+#mobile-nav ul .menu-has-children i {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  padding: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+  color: $primary-color;
+}
+
+#mobile-nav ul .menu-has-children li a {
+  text-transform: none;
+}
+
+#mobile-nav ul .menu-item-active {
+  color: $primary-color;
+}
+
+#mobile-body-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+/* Mobile Nav body classes */
+body.mobile-nav-active {
+  overflow: hidden;
+}
+
+body.mobile-nav-active #mobile-nav {
+  left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+  color: #fff;
+}
+
+
